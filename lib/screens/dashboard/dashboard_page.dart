@@ -9,7 +9,7 @@ import '../utils/utils.dart';
 import 'package:phnauth_and_qr/services/firebase_services.dart';
 
 import 'previous_qr.dart';
-import 'qr_image.dart';
+import 'qr_and_number.dart';
 
 class DashboardPage extends StatefulWidget {
   static const TAG = 'dashboard-page';
@@ -90,17 +90,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           SizedBox(height: 60),
                           HeaderText(text: 'PLUGIN'),
                           SizedBox(height: 50),
-                          QrImageWidget(
-                            qrKey: qrKey,
-                            randomNumber: randomNumber,
-                          ),
-                          SizedBox(height: 20),
-                          Text(
-                            'Generated number',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          SizedBox(height: 20),
-                          Text('$randomNumber', style: TextStyle(fontSize: 40)),
+                          QrCodeAndNumber(qrKey: qrKey, randomNumber: randomNumber),
                           _buildPreviousQr(),
                           Spacer(),
                           _buildSaveButton(),
