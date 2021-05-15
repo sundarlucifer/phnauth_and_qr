@@ -45,6 +45,13 @@ class _LoginFormState extends State<LoginForm> {
           _buildOtpWidget(),
           SizedBox(height: 50),
           _buildLoginButton(),
+          SizedBox(height: 4),
+          Center(
+            child: TextButton(
+              onPressed: () => setState(() => smsSent = !smsSent),
+              child: Text(smsSent ? 'Switch back to Send OTP?' : 'Already have an OTP?'),
+            ),
+          ),
         ],
       ),
     );
