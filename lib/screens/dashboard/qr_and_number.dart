@@ -14,21 +14,35 @@ class QrCodeAndNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        QrImageWidget(
-          qrKey: qrKey,
-          randomNumber: randomNumber,
-        ),
-        SizedBox(height: 20),
-        Text(
-          'Generated number',
-          style: TextStyle(fontSize: 20),
-        ),
-        SizedBox(height: 20),
-        Text('$randomNumber',
-            style: TextStyle(fontSize: 40)),
-      ],
-    );
+    return Stack(alignment: Alignment.topCenter, children: [
+      Column(
+        children: [
+          SizedBox(height: 160),
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Theme.of(context).scaffoldBackgroundColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              children: [
+                SizedBox(height: 60),
+                Text(
+                  'Generated number',
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(height: 20),
+                Text('$randomNumber', style: TextStyle(fontSize: 40)),
+                SizedBox(height: 8),
+              ],
+            ),
+          ),
+        ],
+      ),
+      QrImageWidget(
+        qrKey: qrKey,
+        randomNumber: randomNumber,
+      ),
+    ]);
   }
 }
