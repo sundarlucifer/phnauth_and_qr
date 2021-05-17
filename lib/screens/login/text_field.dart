@@ -5,10 +5,12 @@ class MyTextField extends StatelessWidget {
     Key key,
     @required this.controller,
     @required this.formKey,
+    this.isPhone = false,
   }) : super(key: key);
 
   final TextEditingController controller;
   final formKey;
+  final bool isPhone;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,11 @@ class MyTextField extends StatelessWidget {
           decoration: InputDecoration(border: InputBorder.none),
           keyboardType: TextInputType.phone,
           validator: (value) {
-            return value.isEmpty ? 'Must not be empty' : null;
+            if(value.isEmpty)
+              return 'Must not be empty';
+            if(isPhone && !value.startsWith('+'))
+              return 'Add country code ex: +91';
+            return null;
           },
         ),
       ),
