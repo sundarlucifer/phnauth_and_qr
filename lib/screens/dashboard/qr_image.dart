@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+const kQrSize = 200.0;
+
 class QrImageWidget extends StatelessWidget {
   const QrImageWidget({
     Key key,
@@ -21,7 +23,7 @@ class QrImageWidget extends StatelessWidget {
         key: qrKey,
         child: QrImage(
           data: '$randomNumber',
-          size: 200,
+          size: kQrSize,
           padding: EdgeInsets.all(16),
           errorStateBuilder: (context, error) {
             print("[QR] ERROR - $error");

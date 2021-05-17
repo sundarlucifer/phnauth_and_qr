@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+const kCardHeight = 100.0;
+const kCardMarginTop = 50.0;
+
 class PreviousQrCard extends StatelessWidget {
   const PreviousQrCard({
     Key key,
@@ -14,8 +17,8 @@ class PreviousQrCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(children: [
       Container(
-        margin: EdgeInsets.only(top: 50),
-        height: 100,
+        margin: EdgeInsets.only(top: kCardMarginTop),
+        height: kCardHeight,
         decoration: BoxDecoration(
           color: Color.fromRGBO(18, 18, 18, 1),
         ),

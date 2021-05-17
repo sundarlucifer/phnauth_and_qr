@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'qr_image.dart';
 
+const kNumberContainerSize = 160.0;
+
 class QrCodeAndNumber extends StatelessWidget {
   const QrCodeAndNumber({
     Key key,
@@ -17,8 +19,9 @@ class QrCodeAndNumber extends StatelessWidget {
     return Stack(alignment: Alignment.topCenter, children: [
       Column(
         children: [
-          SizedBox(height: 160),
+          SizedBox(height: kQrSize*0.8),
           Container(
+            height: kNumberContainerSize,
             width: double.infinity,
             decoration: BoxDecoration(
               color: Theme.of(context).scaffoldBackgroundColor,
