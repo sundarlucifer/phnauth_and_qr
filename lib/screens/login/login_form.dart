@@ -41,7 +41,11 @@ class _LoginFormState extends State<LoginForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Phone number', style: TextStyle(fontSize: 20)),
-          MyTextField(controller: phoneTextController, formKey: phoneKey),
+          MyTextField(
+            controller: phoneTextController,
+            formKey: phoneKey,
+            isPhone: true,
+          ),
           _buildOtpWidget(),
           SizedBox(height: 50),
           _buildLoginButton(),
