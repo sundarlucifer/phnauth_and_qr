@@ -11,6 +11,14 @@ import 'package:phnauth_and_qr/services/firebase_services.dart';
 import 'previous_qr.dart';
 import 'qr_and_number.dart';
 
+const kHorizontalPadding = 30.0;
+const kTopSpace = 60.0;
+const kQrTopPadding = 50.0;
+const kSaveBtnMarginTop = 60.0;
+const kSaveBtnVerticalPadding = 10.0;
+const kSaveBtnPadding = 10.0;
+const kSaveBtnFontSize = 20.0;
+
 class DashboardPage extends StatefulWidget {
   static const TAG = 'dashboard-page';
 
@@ -73,34 +81,46 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: _isLoading
-            ? Center(child: CircularProgressIndicator())
-            : SingleChildScrollView(
-                child: Stack(
+        child: Stack(
+          children: [
+            // To fill bottom part of screen with black
+            Positioned(
+              top: kTopSpace + 50,
+              child: Container(
+                color: Colors.black,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+              ),
+            ),
+            ListView(
+              children: [
+                Stack(
                   children: [
                     TopRightCircleDecoration(),
                     _buildLogoutButton(),
                     ScaffoldBackgroundDecoration(),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 30),
-                      height: MediaQuery.of(context).size.height,
                       width: double.infinity,
                       child: Column(
                         children: [
-                          SizedBox(height: 60),
+                          SizedBox(height: kTopSpace),
                           HeaderText(text: 'PLUGIN'),
-                          SizedBox(height: 50),
-                          QrCodeAndNumber(qrKey: qrKey, randomNumber: randomNumber),
+                          SizedBox(height: kQrTopPadding),
+                          QrCodeAndNumber(
+                              qrKey: qrKey, randomNumber: randomNumber),
                           _buildPreviousQr(),
-                          Spacer(),
+                          SizedBox(height: kSaveBtnMarginTop),
                           _buildSaveButton(),
-                          SizedBox(height: 30),
                         ],
                       ),
                     ),
                   ],
                 ),
-              ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -128,18 +148,19 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   _buildSaveButton() {
-    return ElevatedButton(
-      onPressed: _saveNumberAndQr,
-      style: ElevatedButton.styleFrom(
-        primary: Color.fromRGBO(62, 62, 62, 1),
-      ),
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10),
-        width: double.infinity,
-        child: Text(
-          'SAVE',
-          style: TextStyle(fontSize: 20),
-          textAlign: TextAlign.center,
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: kSaveBtnVerticalPadding),
+      child: ElevatedButton(
+        onPressed: _saveNumberAndQr,
+        style: ElevatedButton.styleFrom(primary: Color.fromRGBO(62, 62, 62, 1)),
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: kSaveBtnPadding),
+          width: double.infinity,
+          child: Text(
+            'SAVE',
+            style: TextStyle(fontSize: kSaveBtnFontSize),
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );
